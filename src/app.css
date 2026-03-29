@@ -1,9 +1,21 @@
 :root {
-    --color-blue: #B0DEFF;
-    --color-peach: #FFC5A1;
-    --color-orange: #FFD19A;
-    --color-yellow: #FFF8A6;
+    --blue-dark: #406093;
+    --blue: #4C8CE4;
+    --green: #91D06C;
+    --yellow: #FFF799;
+}
 
-    --color-text: #1a1a1a;
-    --color-bg: #ffffff;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
 }
