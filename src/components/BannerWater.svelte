@@ -27,10 +27,11 @@
 
         const uniforms = {
             uTexture: { value: texture },
-            uMouse: { value: new THREE.Vector2(0.5, 0.5) },
-            uTargetMouse: { value: new THREE.Vector2(0.5, 0.5) },
+            uMouse: { value: new THREE.Vector2(0.75, 0.5) },
+            uTargetMouse: { value: new THREE.Vector2(0.75, 0.5) },
             uVelocity: { value: new THREE.Vector2(0.0, 0.0) },
             uTargetVelocity: { value: new THREE.Vector2(0.0, 0.0) },
+            uAspect: { value: container.clientWidth / container.clientHeight },
             uTime: { value: 0 },
             uDebug: { value: DEBUG ? 1.0 : 0.0 }
         };
@@ -49,6 +50,7 @@
 				uniform sampler2D uTexture;
 				uniform vec2 uMouse;
 				uniform vec2 uVelocity;
+				uniform float uAspect;
 				uniform float uTime;
 				uniform float uDebug;
 
@@ -81,16 +83,34 @@
 					return color / 13.0;
 				}
 
-				float blob(vec2 uv, vec2 center, float time, vec2 velocity) {
+				float blob(vec2 uv, vec2 center, float time, vec2 velocity, float aspect) {
 					vec2 p = uv - center;
+					p.x *= aspect;
 
-					float angle = atan(p.y, p.x);
-					float dist = length(p);
+					vec2 v = velocity;
+					v.x *= aspect;
+
+					float speed = clamp(length(v) * 35.0, 0.0, 1.0);
+
+					vec2 dir = normalize(v + vec2(0.000001, 0.0));
+					vec2 sideDir = vec2(-dir.y, dir.x);
+
+					float along = dot(p, dir);
+					float side = dot(p, sideDir);
+
+					float stretchX = mix(1.0, 1.35, speed);
+					float stretchY = mix(1.0, 0.88, speed);
+
+					vec2 stretched = vec2(along / stretchX, side / stretchY);
+
+					float angle = atan(stretched.y, stretched.x);
+					float dist = length(stretched);
 
 					float r = 0.24;
 					r += sin(angle * 3.0 + time * 1.8) * 0.01;
 					r += sin(angle * 5.0 - time * 1.3) * 0.006;
 					r += cos(angle * 7.0 + time * 1.6) * 0.004;
+					r += sin(angle * 2.0 + time * 2.2) * speed * 0.004;
 
 					return dist - r;
 				}
@@ -100,20 +120,20 @@
 					vec2 mouse = uMouse;
 					vec2 velocity = uVelocity;
 
-					float d = blob(uv, mouse, uTime, velocity);
+					float d = blob(uv, mouse, uTime, velocity, uAspect);
 					float mask = 1.0 - smoothstep(0.0, 0.08, d);
 
 					vec2 diff = uv - mouse;
+					diff.x *= uAspect;
+
 					float dist = length(diff);
 					vec2 dir = normalize(diff + vec2(0.0001));
 
-					float speed = length(velocity);
+					float speed = length(vec2(velocity.x * uAspect, velocity.y));
 
-					// global water distortion for blurred area
 					float globalWaveX = sin((uv.y * 18.0) + uTime * 1.8) * 0.006;
 					float globalWaveY = cos((uv.x * 16.0) - uTime * 1.5) * 0.006;
 
-					// local stronger distortion near blob
 					float ripple = sin(dist * 50.0 - uTime * 5.0) * (0.003 + speed * 0.01);
 					float waveX = sin((uv.y + uTime * 0.8) * 20.0) * speed * 0.006;
 					float waveY = cos((uv.x - uTime * 0.6) * 18.0) * speed * 0.006;
@@ -141,7 +161,7 @@
         const mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
 
-        let lastX = 0.5;
+        let lastX = 0.75;
         let lastY = 0.5;
 
         function updateMouse(e: PointerEvent) {
@@ -160,7 +180,10 @@
         }
 
         function resize() {
-            renderer.setSize(container.clientWidth, container.clientHeight);
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            renderer.setSize(width, height);
+            uniforms.uAspect.value = width / height;
         }
 
         window.addEventListener('pointermove', updateMouse, { passive: true });
@@ -174,7 +197,7 @@
 
             uniforms.uMouse.value.lerp(uniforms.uTargetMouse.value, 0.04);
             uniforms.uVelocity.value.lerp(uniforms.uTargetVelocity.value, 0.08);
-            uniforms.uTargetVelocity.value.multiplyScalar(0.92);
+            uniforms.uTargetVelocity.value.multiplyScalar(0.9);
 
             renderer.render(scene, camera);
             frame = requestAnimationFrame(animate);
