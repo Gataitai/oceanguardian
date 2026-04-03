@@ -11,7 +11,7 @@
         width: 100%;
         height: 7rem;
         box-sizing: border-box;
-        padding: 0 2rem;
+        padding: 0 7rem;
 
         display: flex;
         justify-content: space-between;
