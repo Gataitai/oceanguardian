@@ -41,6 +41,10 @@
         white-space: nowrap;
     }
 
+    a:hover{
+        color: var(--sand);
+    }
+
 
     .logo {
         display: flex;

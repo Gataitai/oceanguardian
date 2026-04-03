@@ -6,11 +6,29 @@
     .page {
         width: 100%;
         font-family: 'Poppins', sans-serif;
+        position: relative;
+        overflow: hidden;
     }
 
     .section {
         width: 100%;
         padding: 6rem 7rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .section-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 4rem;
+    }
+
+    .left {
+        flex: 1;
+    }
+
+    .right {
+        flex: 1;
     }
 
     .banner {
@@ -19,6 +37,7 @@
         align-items: center;
         padding: 0 7rem;
         overflow: hidden;
+        position: relative;
     }
 
     .card {
@@ -28,17 +47,22 @@
         color: var(--white);
     }
 
+    .content {
+        position: relative;
+        z-index: 2;
+        max-width: 50rem;
+    }
+
     .card h1 {
-        font-size: 3rem;
+        font-size: 48px;
         font-weight: 700;
         line-height: 1.1;
         margin-bottom: 1rem;
     }
 
     .card p {
-        font-size: 1.2rem;
+        font-size: 24px;
         margin-bottom: 2rem;
-        max-width: 40rem;
     }
 
     .btn {
@@ -48,6 +72,7 @@
         border-radius: 999px;
         text-decoration: none;
         font-weight: 600;
+        display: inline-block;
     }
 
     .btn:hover {
@@ -71,25 +96,35 @@
     }
 
     .section h2 {
-        font-size: 2.2rem;
-        margin-bottom: 1.5rem;
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 1rem;
     }
 
     .section p {
-        max-width: 50rem;
         margin-bottom: 1rem;
-        line-height: 1.6;
+        font-weight: 300;
+        font-size: 24px;
     }
 
     @media (max-width: 1000px) {
         .section,
-        .banner,
-        .card {
+        .banner {
+            padding: 4rem 2rem;
+        }
+
+        .card,
+        .content {
             max-width: 100%;
         }
 
         .card h1 {
             font-size: 2.2rem;
+        }
+
+        .section-inner {
+            flex-direction: column;
+            gap: 2rem;
         }
     }
 </style>
@@ -114,56 +149,65 @@
     </section>
 
     <section class="section orange">
-        <h2>What is this experience</h2>
+        <div class="section-inner">
+            <div class="left">
+                <h2>What is this experience</h2>
+                <p>
+                    Ocean Guardian presents a family ocean experience where adventure learning and conservation come together.
+                </p>
+                <p>
+                    Join coral workshops discover Bali local life snorkel in shallow waters and help plant coral with your family.
+                </p>
+                <p>
+                    It is fun meaningful and made to create memories that last.
+                </p>
+            </div>
 
-        <p>
-            Ocean Guardian presents a unique family ocean program where adventure meets purpose. This is not just a holiday it is a chance to explore Bali while making a real difference.
-        </p>
-
-        <p>
-            You and your family will learn about coral reefs take part in conservation workshops and even plant your own coral in the ocean.
-        </p>
-
-        <p>
-            Experience local Balinese life snorkel in shallow waters and create meaningful memories together.
-        </p>
+            <div class="right"></div>
+        </div>
     </section>
 
     <section class="section sea">
-        <h2>Where and when</h2>
+        <div class="section-inner">
+            <div class="left"></div>
 
-        <p>
-            7 to 10 June in North Bali Lovina and Singaraja during Coral Triangle Day.
-        </p>
+            <div class="right">
+                <h2>Where and when</h2>
+                <p>
+                    The program takes place from 7 to 10 June in North Bali in Lovina and Singaraja around Coral Triangle Day.
+                </p>
+                <p>
+                    Enjoy sunrise dolphin watching in Lovina and discover Singaraja the former capital of Bali.
+                </p>
 
-        <p>
-            Enjoy calm beaches dolphin watching at sunrise and explore Singaraja the former capital of Bali.
-        </p>
-
-        <h2>Who is it for</h2>
-
-        <p>
-            Designed for families created by parents and guided by marine scientists no experience needed.
-        </p>
+                <h2>Who is it for</h2>
+                <p>
+                    Designed for families curated by parents and guided by marine scientists.
+                </p>
+            </div>
+        </div>
     </section>
 
     <section class="section dark">
-        <h2>Why join</h2>
+        <div class="section-inner">
+            <div class="left">
+                <h2>Why join</h2>
+                <p>
+                    This journey helps families connect with the ocean in a fun meaningful and educational way.
+                </p>
+                <p>
+                    Instead of only visiting Bali you become part of protecting it.
+                </p>
+            </div>
 
-        <p>
-            Turn your holiday into something meaningful learn protect and experience the ocean together.
-        </p>
+            <div class="right">
+                <h2>How to join</h2>
+                <p>
+                    Fill in the form with your name WhatsApp number and email or reach out directly on WhatsApp.
+                </p>
 
-        <p>
-            Activities include coral planting workshops snorkeling and local experiences.
-        </p>
-
-        <h2>How to join</h2>
-
-        <p>
-            Fill in your name WhatsApp and email and we will contact you.
-        </p>
-
-        <a href="https://wa.me/6587511990" class="btn">Contact via WhatsApp</a>
+                <a href="https://wa.me/6587511990" class="btn">Contact via WhatsApp</a>
+            </div>
+        </div>
     </section>
 </div>
