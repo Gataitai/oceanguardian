@@ -1,23 +1,24 @@
-:root {
-    --orange: #F29F05;
-    --sand: #C7CEDD;
-    --sea: #5ec7ff;
+    :root {
+        --orange: #f29f05;
 
-    --dark: #0f172a;
-    --white: #ffffff;
-}
+        --sea: #5ec7ff;
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        --dark: #0f172a;
+        --white: #ffffff;
+        --sand: #c7cedd;
+    }
 
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
-    overflow-x: hidden;
-}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100%;
+        overflow-x: hidden;
+    }

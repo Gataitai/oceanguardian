@@ -106,7 +106,7 @@
 					float angle = atan(stretched.y, stretched.x);
 					float dist = length(stretched);
 
-					float r = 0.24;
+					float r = 0.30;
 					r += sin(angle * 3.0 + time * 1.8) * 0.01;
 					r += sin(angle * 5.0 - time * 1.3) * 0.006;
 					r += cos(angle * 7.0 + time * 1.6) * 0.004;

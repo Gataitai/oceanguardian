@@ -41,9 +41,6 @@
         white-space: nowrap;
     }
 
-    a:hover {
-        opacity: 0.8;
-    }
 
     .logo {
         display: flex;
@@ -67,7 +64,8 @@
     }
 
     .cta:hover {
-        opacity: 0.9;
+        background-color: var(--sea);
+        color: var(--white);
     }
 </style>
 
