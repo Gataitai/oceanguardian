@@ -1,5 +1,6 @@
 <script lang="ts">
     import BannerWater from '../components/BannerWater.svelte';
+    import bannerUrl from '$lib/assets/banner.png';
 </script>
 
 <style>
@@ -34,32 +35,27 @@
         flex: 1;
     }
 
-    /* spacing rules */
     .left h2,
     .right h2 {
         margin-bottom: 1.5rem;
         margin-top: 0;
     }
 
-    /* p after p */
     .left p + p,
     .right p + p {
         margin-top: 1rem;
     }
 
-    /* p before h2 */
     .left p + h2,
     .right p + h2 {
         margin-top: 2rem;
     }
 
-    /* p before a */
     .left p + a,
     .right p + a {
         margin-top: 1.5rem;
     }
 
-    /* prevent a from stretching */
     .left a,
     .right a {
         align-self: flex-start;
@@ -72,6 +68,17 @@
         padding: 10rem;
         overflow: hidden;
         position: relative;
+    }
+
+    .banner-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        z-index: 0;
+        display: block;
     }
 
     .banner:hover {
@@ -226,6 +233,7 @@
 
 <div class="page">
     <section class="banner">
+        <img class="banner-img" src={bannerUrl} alt="" />
         <BannerWater />
 
         <div class="card">
