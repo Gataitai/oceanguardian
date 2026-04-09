@@ -13,20 +13,17 @@
     .section {
         width: 100%;
         padding: 10rem;
-        position: relative;
-        overflow: hidden;
     }
 
     .section-inner {
         display: flex;
         justify-content: space-between;
-        gap: 4rem;
     }
 
     .left,
-    .right,
-    .card {
-        min-width: 0;
+    .right {
+        display: flex;
+        flex-direction: column;
     }
 
     .left {
@@ -35,6 +32,37 @@
 
     .right {
         flex: 1;
+    }
+
+    /* spacing rules */
+    .left h2,
+    .right h2 {
+        margin-bottom: 1.5rem;
+        margin-top: 0;
+    }
+
+    /* p after p */
+    .left p + p,
+    .right p + p {
+        margin-top: 1rem;
+    }
+
+    /* p before h2 */
+    .left p + h2,
+    .right p + h2 {
+        margin-top: 2rem;
+    }
+
+    /* p before a */
+    .left p + a,
+    .right p + a {
+        margin-top: 1.5rem;
+    }
+
+    /* prevent a from stretching */
+    .left a,
+    .right a {
+        align-self: flex-start;
     }
 
     .banner {
@@ -104,14 +132,13 @@
         font-size: 48px;
         font-weight: 700;
         line-height: 1.1;
-        margin-bottom: 1rem;
     }
 
     .section p {
-        margin-bottom: 2rem;
         font-weight: 300;
         font-size: 24px;
         line-height: 1.5;
+        margin: 0;
     }
 
     @media (max-width: 1200px) {
@@ -213,7 +240,7 @@
                 Learn, explore, and create meaningful memories that go beyond a typical holiday.
             </p>
 
-            <a href="/signup" class="btn">Start Your Journey</a>
+            <a href="https://wa.me/6587511990" class="btn">Contact via WhatsApp</a>
         </div>
     </section>
 
