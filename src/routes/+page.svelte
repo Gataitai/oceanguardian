@@ -68,6 +68,7 @@
         padding: 10rem;
         overflow: hidden;
         position: relative;
+        background: var(--orange);
     }
 
     .banner-img {
@@ -233,7 +234,6 @@
 
 <div class="page">
     <section class="banner">
-        <img class="banner-img" src={bannerUrl} alt="" />
         <BannerWater imageUrl={bannerUrl} />
 
         <div class="card">
