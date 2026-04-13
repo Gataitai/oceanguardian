@@ -1,21 +1,22 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { fly } from 'svelte/transition';
-    import BannerWater from '../components/BannerWater.svelte';
-    import bannerUrl from '$lib/assets/banner.png';
+    import { onMount } from 'svelte'
+    import { fly } from 'svelte/transition'
+    import BannerWater from '../components/BannerWater.svelte'
+    import Photos from '../components/Photos.svelte'
+    import bannerUrl from '$lib/assets/banner.png'
 
-    let comboElements: HTMLDivElement[] = [];
-    let visible = $state([false, false, false, false, false, false, false]);
+    let comboElements: HTMLDivElement[] = []
+    let visible = $state([false, false, false, false, false, false, false])
 
     onMount(() => {
         const observer = new IntersectionObserver(
             (entries) => {
                 for (const entry of entries) {
                     if (entry.isIntersecting) {
-                        const index = comboElements.findIndex((element) => element === entry.target);
+                        const index = comboElements.findIndex((element) => element === entry.target)
                         if (index !== -1) {
-                            visible[index] = true;
-                            observer.unobserve(entry.target);
+                            visible[index] = true
+                            observer.unobserve(entry.target)
                         }
                     }
                 }
@@ -23,14 +24,14 @@
             {
                 threshold: 0.15
             }
-        );
+        )
 
         for (const element of comboElements) {
-            if (element) observer.observe(element);
+            if (element) observer.observe(element)
         }
 
-        return () => observer.disconnect();
-    });
+        return () => observer.disconnect()
+    })
 </script>
 
 <style>
@@ -43,7 +44,7 @@
 
     .section {
         width: 100%;
-        padding: 7rem 10rem 7rem 10rem  ;
+        padding: 7rem 10rem;
     }
 
     .section-inner {
@@ -52,11 +53,16 @@
         gap: 2rem;
     }
 
+    .section-inner.with-photos {
+        min-height: 100vh;
+    }
+
     .left,
     .right {
         display: flex;
         flex-direction: column;
         flex: 1;
+        width: 50%;
     }
 
     .combo + .combo {
@@ -93,7 +99,6 @@
         display: flex;
         align-items: center;
         padding: 10rem;
-        overflow: hidden;
         position: relative;
         background: var(--orange);
     }
@@ -165,13 +170,27 @@
         margin: 0;
     }
 
+    .photos-side {
+        display: flex;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .photos-side.left {
+        justify-content: flex-start;
+    }
+
+    .photos-side.right {
+        justify-content: flex-end;
+    }
+
     .footer {
         background: var(--darkest);
         color: var(--white);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 2rem 10rem 2rem 10rem;
+        padding: 2rem 10rem;
         gap: 2rem;
         flex-wrap: wrap;
     }
@@ -198,7 +217,7 @@
     </section>
 
     <section class="section orange">
-        <div class="section-inner">
+        <div class="section-inner with-photos">
             <div class="left">
                 <div class="combo" bind:this={comboElements[0]}>
                     {#if visible[0]}
@@ -235,13 +254,17 @@
                 </div>
             </div>
 
-            <div class="right"></div>
+            <div class="right photos-side right">
+                <Photos align="right" />
+            </div>
         </div>
     </section>
 
     <section class="section sea">
-        <div class="section-inner">
-            <div class="left"></div>
+        <div class="section-inner with-photos">
+            <div class="left photos-side left">
+                <Photos align="left" />
+            </div>
 
             <div class="right">
                 <div class="combo" bind:this={comboElements[2]}>
