@@ -4,7 +4,7 @@
     import BannerWater from '../components/BannerWater.svelte'
     import Photos from '../components/Photos.svelte'
     import bannerUrl from '$lib/assets/banner.png'
-
+//
     let comboElements: HTMLDivElement[] = []
     let visible = $state([false, false, false, false, false, false, false])
 
