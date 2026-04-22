@@ -4,7 +4,14 @@
     import BannerWater from '../components/BannerWater.svelte'
     import Photos from '../components/Photos.svelte'
     import bannerUrl from '$lib/assets/banner.png'
-//
+
+    import photo1 from '$lib/assets/content/DSC02095.JPG'
+    import photo2 from '$lib/assets/content/pic.png'
+    import photo3 from '$lib/assets/content/DSC02404.JPG'
+    import photo4 from '$lib/assets/content/DSC02409.JPG'
+    import photo5 from '$lib/assets/content/DSC02414.JPG'
+    import photo6 from '$lib/assets/content/DSC02429.JPG'
+
     let comboElements: HTMLDivElement[] = []
     let visible = $state([false, false, false, false, false, false, false])
 
@@ -194,10 +201,76 @@
         gap: 2rem;
         flex-wrap: wrap;
     }
+
+    @media (max-width: 1100px) {
+        .section,
+        .banner {
+            padding: 6rem 4rem;
+        }
+
+        .card {
+            max-width: 60%;
+        }
+
+        .section h2,
+        .card h1 {
+            font-size: 40px;
+        }
+
+        .section p,
+        .card p {
+            font-size: 22px;
+        }
+
+        .footer {
+            padding: 2rem 4rem;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .section-inner,
+        .section-inner.with-photos {
+            flex-direction: column;
+            min-height: unset;
+        }
+
+        .left,
+        .right {
+            width: 100%;
+        }
+
+        .photos-side {
+            min-height: unset;
+            justify-content: center;
+        }
+
+        .card {
+            max-width: 100%;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .section,
+        .banner,
+        .footer {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .section h2,
+        .card h1 {
+            font-size: 32px;
+        }
+
+        .section p,
+        .card p {
+            font-size: 18px;
+        }
+    }
 </style>
 
 <div class="page">
-    <section class="banner">
+    <section class="banner" id="experience">
         <BannerWater imageUrl={bannerUrl} />
 
         <div class="card">
@@ -216,7 +289,7 @@
         </div>
     </section>
 
-    <section class="section orange">
+    <section class="section orange" id="experience-info">
         <div class="section-inner with-photos">
             <div class="left">
                 <div class="combo" bind:this={comboElements[0]}>
@@ -255,15 +328,21 @@
             </div>
 
             <div class="right photos-side right">
-                <Photos align="right" />
+                <Photos
+                        align="right"
+                        images={[photo1, photo2, photo3]}
+                />
             </div>
         </div>
     </section>
 
-    <section class="section sea">
+    <section class="section sea" id="details">
         <div class="section-inner with-photos">
             <div class="left photos-side left">
-                <Photos align="left" />
+                <Photos
+                        align="left"
+                        images={[photo4, photo5, photo6]}
+                />
             </div>
 
             <div class="right">
@@ -314,7 +393,7 @@
         </div>
     </section>
 
-    <section class="section dark">
+    <section class="section dark" id="why">
         <div class="section-inner">
             <div class="left">
                 <div class="combo" bind:this={comboElements[5]}>
@@ -334,7 +413,7 @@
                 </div>
             </div>
 
-            <div class="right">
+            <div class="right" id="join">
                 <div class="combo" bind:this={comboElements[6]}>
                     {#if visible[6]}
                         <div transition:fly={{ y: 80, duration: 700 }}>

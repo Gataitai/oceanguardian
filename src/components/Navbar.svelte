@@ -13,6 +13,10 @@
 </script>
 
 <style>
+    :global(html) {
+        scroll-behavior: smooth;
+    }
+
     .navbar {
         position: absolute;
         top: 0;
@@ -60,7 +64,6 @@
         height: 100%;
         width: auto;
         object-fit: contain;
-        display: block;
     }
 
     .cta {
@@ -83,9 +86,7 @@
         cursor: pointer;
         width: 2.2rem;
         height: 2.2rem;
-        padding: 0;
         flex-direction: column;
-        justify-content: center;
         gap: 0.35rem;
     }
 
@@ -94,7 +95,6 @@
         width: 100%;
         height: 3px;
         background: var(--white);
-        border-radius: 999px;
     }
 
     .modal-backdrop {
@@ -105,11 +105,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 2rem;
     }
 
     .modal {
-        width: min(100%, 12rem);
         display: flex;
         flex-direction: column;
         gap: 1rem;
@@ -118,12 +116,6 @@
 
     .modal a {
         font-size: 1.5rem;
-    }
-
-    .modal .cta {
-        display: inline-block;
-        text-align: center;
-        margin-top: 0.5rem;
     }
 
     .close {
@@ -135,25 +127,9 @@
         color: var(--white);
         font-size: 2rem;
         cursor: pointer;
-        line-height: 1;
-    }
-
-    @media (max-width: 1000px) {
-        .navbar {
-            padding: 0 4rem;
-        }
     }
 
     @media (max-width: 800px) {
-        .navbar {
-            min-height: 5.5rem;
-            padding: 1rem 2rem;
-        }
-
-        .left {
-            gap: 0;
-        }
-
         .left a:not(.logo),
         .right {
             display: none;
@@ -163,43 +139,25 @@
             display: flex;
         }
     }
-
-    @media (max-width: 500px) {
-        .navbar {
-            padding: 1rem;
-        }
-
-        .modal a {
-            font-size: 1.2rem;
-        }
-    }
 </style>
 
 <nav class="navbar">
     <div class="left">
-        <a class="logo" href="https://cubulan.com" onclick={closeMenu}>
+        <a class="logo" href="https://cubulan.com">
             <img src={logo} alt="logo" />
         </a>
 
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/programme">Programme</a>
-        <a href="/impact">Impact</a>
-        <a href="/contact">Contact</a>
+        <a href="#experience" onclick={closeMenu}>Experience</a>
+        <a href="#details" onclick={closeMenu}>Details</a>
+        <a href="#why" onclick={closeMenu}>Why</a>
+        <a href="#join" onclick={closeMenu}>Join</a>
     </div>
 
     <div class="right">
-        <a href="/login">Login</a>
-        <a class="cta" href="https://wa.me/6587511990">Join Now</a>
+        <a href="https://wa.me/6587511990" onclick={closeMenu} class="cta">Contact now</a>
     </div>
 
-    <button
-            class="burger"
-            type="button"
-            aria-label="Open menu"
-            aria-expanded={menuOpen}
-            onclick={toggleMenu}
-    >
+    <button class="burger" onclick={toggleMenu}>
         <span></span>
         <span></span>
         <span></span>
@@ -208,23 +166,14 @@
 
 {#if menuOpen}
     <div class="modal-backdrop">
-        <button
-                class="close"
-                type="button"
-                aria-label="Close menu"
-                onclick={closeMenu}
-        >
-            ×
-        </button>
+        <button class="close" onclick={closeMenu}>×</button>
 
         <div class="modal">
-            <a href="/" onclick={closeMenu}>Home</a>
-            <a href="/about" onclick={closeMenu}>About</a>
-            <a href="/programme" onclick={closeMenu}>Programme</a>
-            <a href="/impact" onclick={closeMenu}>Impact</a>
-            <a href="/contact" onclick={closeMenu}>Contact</a>
-            <a href="/login" onclick={closeMenu}>Login</a>
-            <a class="cta" href="/signup" onclick={closeMenu}>Join Now</a>
+            <a href="#experience" onclick={closeMenu}>Experience</a>
+            <a href="#details" onclick={closeMenu}>Details</a>
+            <a href="#why" onclick={closeMenu}>Why</a>
+            <a href="#join" onclick={closeMenu}>Join</a>
+            <a class="cta" href="#join" onclick={closeMenu}>Join Now</a>
         </div>
     </div>
 {/if}

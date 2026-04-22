@@ -2,16 +2,12 @@
     import { fade } from 'svelte/transition'
 
     type Props = {
-        images?: [string, string, string]
+        images: [string, string, string]
         align?: 'left' | 'right'
     }
 
     let {
-        images = [
-            'https://picsum.photos/1000/1200?1',
-            'https://picsum.photos/1000/1200?2',
-            'https://picsum.photos/1000/1200?3'
-        ],
+        images,
         align = 'left'
     }: Props = $props()
 
@@ -193,5 +189,36 @@
         border-radius: 1rem;
         pointer-events: none;
         display: block;
+    }
+
+    @media (max-width: 900px) {
+        .photos {
+            justify-content: center;
+        }
+
+        .photo {
+            width: 9rem;
+            height: 16rem;
+        }
+
+        .double-col {
+            gap: 1.5rem;
+        }
+
+        .photos.left .single-col,
+        .photos.right .double-col {
+            margin-right: 1rem;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .photo {
+            width: 6.5rem;
+            height: 11rem;
+        }
+
+        .double-col {
+            gap: 1rem;
+        }
     }
 </style>
